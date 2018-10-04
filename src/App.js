@@ -2,12 +2,18 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { Router, Link } from "@reach/router";
 import Results from "./components/Results";
+import Details from './components/Details';
 
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <Results />
+       <div>
+          
+          <Router>
+             <Results path="/" />
+             <Details path="/details/:id"/>
+          </Router>
+        
       </div>
     );
   }
