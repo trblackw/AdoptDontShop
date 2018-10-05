@@ -3,3 +3,38 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+img.active {
+  border-color: #ad343e;
+  opacity: 0.6;
+}
+
+a {
+   text-decoration: none;
+   color: whitesmoke;
+}
+
+body {
+   background-color: #E37222;
+   color: whitesmoke;
+   /* height: 100vh; */
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+
+.shadow {
+   position: relative;
+   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+     0 0 40px rgba(0, 0, 0, 0.1) inset;
+   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+     0 0 40px rgba(0, 0, 0, 0.1) inset;
+   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+ }
+
+/*colors
+TANGERINE #E37222
+TEAL #07889B
+POWDER #66B9BF light blue
+TAN #EEAA7B
+
+*/

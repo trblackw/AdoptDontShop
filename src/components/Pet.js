@@ -27,25 +27,26 @@ class Pet extends Component {
       profileImage = photos[0].value;
     }
     return (
-      <div>
+      <Link to={`details/${id}`}>
         <ImageContainer>
           <img src={profileImage} alt={name} />
         </ImageContainer>
         <PetDetails>
           <h1>{name}</h1>
-          <h3>{`${animal} -- ${breed} -- ${location}`}</h3>
+          <h3>{`${animal} -- ${location}`}</h3>
         </PetDetails>
-      </div>
+      </Link>
     );
   }
 }
 
 export default Pet;
 
-const ImageContainer = styled.div`
+export const ImageContainer = styled.div`
   width: 100px;
   height: 100px;
   clip-path: circle(50% at 50% 50%);
+  margin: 0 auto;
 
   img {
     width: 100px;
@@ -55,6 +56,7 @@ const ImageContainer = styled.div`
 `;
 
 const PetDetails = styled.div`
-  margin: 1em auto;
-  padding: 1.5em;
+  margin: 0 auto;
+  padding: 1em;
+  text-align: center;
 `;

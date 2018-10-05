@@ -22,7 +22,7 @@ class Results extends Component {
     petfinder.pet
       .find({
         output: "full",
-        location: "Wilson, NC"
+        location: "Raleigh, NC"
       })
       .then(results => {
         const { pets } = results.petfinder;
@@ -34,7 +34,7 @@ class Results extends Component {
     return (
       <div>
         <input type="text" />
-        <PetGrid>
+        <PetContainer>
           {this.state.pets.map(pet => {
             let breed;
             if (Array.isArray(pet.breeds.breed)) {
@@ -55,7 +55,7 @@ class Results extends Component {
               />
             );
           })}
-        </PetGrid>
+        </PetContainer>
       </div>
     );
   }
@@ -63,11 +63,10 @@ class Results extends Component {
 
 export default Results;
 
-const PetGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 1em;
-  margin: 1em auto;
+const PetContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   padding: 1em;
+  flex-wrap: wrap;
 `;
