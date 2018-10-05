@@ -22,14 +22,15 @@ class Results extends Component {
     petfinder.pet
       .find({
         output: "full",
-        location: "Raleigh, NC"
+        location: "Wilson, NC"
       })
       .then(results => {
         const { pets } = results.petfinder;
         this.setState({ pets: pets.pet });
       });
   };
-  render() {
+   render() {
+     
     return (
       <div>
         <input type="text" />

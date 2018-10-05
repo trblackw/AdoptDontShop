@@ -43,15 +43,14 @@ class Pet extends Component {
 export default Pet;
 
 const ImageContainer = styled.div`
-  clip-path: ellipse(130px 140px at 10% 20%);
   width: 100px;
   height: 100px;
-  margin: 1.5em;
-  padding: 1em;
+  clip-path: circle(50% at 50% 50%);
 
   img {
     width: 100px;
     min-height: 100px;
+    object-fit: cover;
   }
 `;
 
