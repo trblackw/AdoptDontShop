@@ -33,7 +33,6 @@ class Results extends Component {
      
     return (
       <div>
-        <input type="text" />
         <PetContainer>
           {this.state.pets.map(pet => {
             let breed;
