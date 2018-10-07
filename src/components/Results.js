@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import pf from "petfinder-client";
 import Pet from "./Pet";
-import { getBreed } from "../helpers";
+import { petfinder } from "../helpers";
 import styled from "styled-components";
+import Search from "./Search";
+import { Consumer } from "./SearchContext";
 
-const petfinder = pf({
-  key: process.env.API_KEY,
-  secret: process.env.API_SECRET
-});
+//implement user location for home results view
+// const userLocation = navigator.geolocation.getCurrentPosition(position => {
+//    const userLatitude = position.coords.latitude,
+//    const userLongitude = position.coords.longitude
+// })
 
 class Results extends Component {
   state = {
@@ -18,11 +20,12 @@ class Results extends Component {
     this.search();
   }
 
-  search = () => {
+   search = () => {
+      const { location, animal, breed } = this.props.searchParams;
     petfinder.pet
       .find({
         output: "full",
-        location: "Raleigh, NC"
+        location, animal, breed
       })
       .then(results => {
         const { pets } = results.petfinder;
@@ -30,37 +33,45 @@ class Results extends Component {
       });
   };
    render() {
-     
     return (
       <div>
+          <Search search={this.search}/>
         <PetContainer>
-          {this.state.pets.map(pet => {
-            let breed;
-            if (Array.isArray(pet.breeds.breed)) {
-              breed = pet.breeds.breed.join(", ");
-            } else {
-              breed = pet.breeds.breed;
-            }
-            return (
-              <Pet
-                animal={pet.animal}
-                key={pet.id}
-                name={pet.name}
-                breed={breed}
-                media={pet.media}
-                location={`${pet.contact.city}, ${pet.contact.state}`}
-                id={pet.id}
-                sex={pet.sex}
-              />
-            );
-          })}
+          {this.state.pets
+            .filter(pet => pet.name.split(" ").length < 3)
+            .map(pet => {
+              let breed;
+              if (Array.isArray(pet.breeds.breed)) {
+                breed = pet.breeds.breed.join(", ");
+              } else {
+                breed = pet.breeds.breed;
+              }
+              return (
+                <Pet
+                  animal={pet.animal}
+                  key={pet.id}
+                  name={pet.name}
+                  breed={breed}
+                  media={pet.media}
+                  location={`${pet.contact.city}, ${pet.contact.state}`}
+                  id={pet.id}
+                  sex={pet.sex}
+                />
+              );
+            })}
         </PetContainer>
       </div>
     );
   }
 }
 
-export default Results;
+export default function ResultsWithContext(props) {
+  return (
+    <Consumer>
+      {context => <Results {...props} searchParams={context} />}
+    </Consumer>
+  );
+}
 
 const PetContainer = styled.div`
   display: flex;
