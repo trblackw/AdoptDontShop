@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "@reach/router";
+import { Link } from "@reach/router";
 
 const Nav = () => (
-  <NavContainer>
+  <NavContainer className="shadow">
     <NavUl>
       <li>
-        Home
+        <Link to="/">Home</Link>
       </li>
       <li>
-        Search
+        <Link to="/search-query">Search</Link>
       </li>
     </NavUl>
   </NavContainer>
@@ -23,6 +23,7 @@ const NavContainer = styled.div`
   margin: 0;
   width: 100%;
   height: 70px;
+  border-bottom: 1px solid #036877;
 `;
 
 const NavUl = styled.ul`

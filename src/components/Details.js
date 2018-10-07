@@ -1,13 +1,8 @@
 import React, { Component } from "react";
-import pf from "petfinder-client";
 import { navigate } from "@reach/router";
 import styled from "styled-components";
 import Carousel from "./Carousel";
-
-const petfinder = pf({
-  key: process.env.API_KEY,
-  secret: process.env.API_SECRET
-});
+import { petfinder } from "../helpers";
 
 class Details extends Component {
   state = {
@@ -51,11 +46,16 @@ class Details extends Component {
       return <h1>LOADING...</h1>;
     }
     return (
-       <DetailsContainer>
-          <button onClick={() => navigate("/")}>Go back</button>
-        <Carousel media={media} />
+      <DetailsContainer>
+        <button onClick={() => navigate("/")}>Go back</button>
+        <Carousel
+          media={media}
+          name={name}
+          animal={animal}
+          breed={breed}
+          location={location}
+        />
         <h1>{name}</h1>
-        <h4>{`${name} is a ${breed} ${animal} in ${location}`}</h4>
         <p>{description}</p>
       </DetailsContainer>
     );
@@ -67,8 +67,11 @@ export default Details;
 const DetailsContainer = styled.div`
   margin: 0 auto;
   padding: 1.5em;
-  background-color: #EEAA7B;
+  background-color: #eeaa7b;
   height: 100vh;
+  h1 {
+    font-family: "Varela Round", sans-serif;
+  }
 
   ul {
     display: flex;
