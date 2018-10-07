@@ -21,22 +21,31 @@ class Carousel extends Component {
 
   render() {
     const { photos, active } = this.state;
+    const { name, breed, animal, location } = this.props;
     return (
-      <CarouselContainer>
-        <img src={photos[active].value} alt="primary animal" />
-        <div>
-          {photos.map((photo, i) => (
-            <img
-              onClick={this.handleClick}
-              key={photo.value}
-              src={photo.value}
-              data-index={i}
-              alt="animal thumbnail"
-              className={i === active ? "active" : ""}
-            />
-          ))}
-        </div>
-      </CarouselContainer>
+      <Fragment>
+        <h3
+          style={{
+            textAlign: "center",
+            fontFamily: "Varela Round, sans-serif"
+          }}
+        >{`${name} is a ${breed} ${animal} in ${location}`}</h3>
+        <CarouselContainer>
+          <img src={photos[active].value} alt="primary animal" />
+          <div>
+            {photos.map((photo, i) => (
+              <img
+                onClick={this.handleClick}
+                key={photo.value}
+                src={photo.value}
+                data-index={i}
+                alt="animal thumbnail"
+                className={i === active ? "active" : ""}
+              />
+            ))}
+          </div>
+        </CarouselContainer>
+      </Fragment>
     );
   }
 }
@@ -48,10 +57,9 @@ const CarouselContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 400px;
-  background-color: #66B9BF;
-  border: 3px solid #07889B;
+  background-color: #66b9bf;
+  border: 3px solid #07889b;
   border-radius: 10px;
-
 
   img {
     max-width: 45%;
