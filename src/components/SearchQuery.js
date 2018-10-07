@@ -1,28 +1,50 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import { ANIMALS } from "petfinder-client";
+import pf, { ANIMALS } from "petfinder-client";
+
+const petfinder = pf({
+  key: process.env.API_KEY,
+  secret: process.env.API_SECRET
+});
 
 class SearchQuery extends Component {
   state = {
     location: "Raleigh, NC",
     animal: "",
-    breed: ""
+    breed: "",
+    breeds: []
   };
 
-  handleLocationInput = e => {
-    this.setState({
-      location: e.target.value
-    });
-  };
+  handleSubmit = e => e.preventDefault();
+
+  handleLocationInput = e => this.setState({ location: e.target.value });
 
   handleAnimalChange = e => {
-    this.setState({
-      animal: e.target.value
-    });
+    this.setState(
+      {
+        animal: e.target.value,
+        breed: ""
+      },
+      this.getBreeds
+    );
   };
+
+  handleBreedChange = e => this.setState({ breed: e.target.value });
+
+  getBreeds = () => {
+    return this.state.animal
+      ? petfinder.breed.list({ animal: this.state.animal }).then(data => {
+          const breeds = data.petfinder.breeds;
+          return data.petfinder && Array.isArray(breeds && breeds.breed)
+            ? this.setState({ breeds: breeds.breed })
+            : this.setState({ breeds: [] });
+        })
+      : this.setState({ breeds: [] });
+  };
+
   render() {
     return (
-      <QueryContainer>
+      <QueryForm onSubmit={this.handleSubmit} className="drop-shadow">
         <label htmlFor="location">Location</label>
         <input
           type="text"
@@ -35,32 +57,53 @@ class SearchQuery extends Component {
         />
         <label htmlFor="animal">Animal</label>
         <select
-          name=""
           id="animal"
           defaultValue={this.state.animal}
           onChange={this.handleAnimalChange}
           onBlur={this.handleAnimalChange}
         >
-          <option value="" />
+          <option>Select an animal</option>
           {ANIMALS.map(animal => (
             <option key={animal} value={animal}>
               {animal}
             </option>
           ))}
         </select>
-      </QueryContainer>
+        {this.state.breeds.length > 1 && (
+          <Fragment>
+            <label htmlFor="breed">Breed</label>
+            <select
+              id="breed"
+              defaultValue={this.state.breed}
+              onChange={this.handleBreedChange}
+              onBlur={this.handleBreedChange}
+            >
+              {this.state.breeds.map(breed => (
+                <option key={breed} value={breed}>
+                  {breed}
+                </option>
+              ))}
+            </select>
+            <button id="submit">Search</button>
+          </Fragment>
+        )}
+      </QueryForm>
     );
   }
 }
 
 export default SearchQuery;
 
-const QueryContainer = styled.div`
-  margin: 0 auto;
+const QueryForm = styled.form`
+  margin: 1em auto;
   padding: 1.5em;
-  width: 85%;
+  background: #66b9bf;
+  color: whitesmoke;
+  width: 80%;
+  border: 1px solid #07889b;
   border-radius: 5px;
-  input, select {
+  input,
+  select {
     padding: 0.5em 0.7em;
     margin: 0 auto;
     width: 40%;
@@ -68,7 +111,21 @@ const QueryContainer = styled.div`
   }
   label {
     display: block;
-    margin: .6em 0.6em;
+    margin: 0.6em 0.6em;
   }
 
+  button#submit {
+    background: #e37222;
+    color: whitesmoke;
+    padding: 0.5em;
+    border: none;
+    border-radius: 2px;
+    display: block;
+    margin-top: 1.5em;
+    &:hover {
+      background: #07889b;
+      color: whitesmoke;
+      cursor: pointer;
+    }
+  }
 `;
