@@ -21,7 +21,7 @@ class Carousel extends Component {
 
   render() {
     const { photos, active } = this.state;
-    const { name, breed, animal, location } = this.props;
+     const { name, breed, animal, location } = this.props;
     return (
       <Fragment>
         <h3
@@ -31,7 +31,7 @@ class Carousel extends Component {
           }}
         >{`${name} is a ${breed} ${animal} in ${location}`}</h3>
         <CarouselContainer>
-          <img src={photos[active].value} alt="primary animal" />
+             <img src={photos[active].value} alt="primary animal" />
           <div>
             {photos.map((photo, i) => (
               <img
@@ -62,8 +62,11 @@ const CarouselContainer = styled.div`
   border-radius: 10px;
 
   img {
-    max-width: 45%;
-    max-height: 400px;
+    height: auto;
+    width: 40%;
+    margin-left: 1em;
+    border: 3px solid #07889b;
+    border-radius: 5px;
   }
 
   div > img {
@@ -73,7 +76,7 @@ const CarouselContainer = styled.div`
     display: inline-block;
     margin: 15px;
     cursor: pointer;
-    border: 2px solid #333;
+    border: 2px solid #07889b;
     object-fit: cover;
   }
 `;
