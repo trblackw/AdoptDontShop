@@ -14,23 +14,24 @@ class Pet extends Component {
     let profileImage = "";
     if (photos[0] && photos[0].value) {
       profileImage = photos[0].value;
+    } else {
+      profileImage = "http://placecorgi.com/300/300";
     }
     return (
-        <Link to={`details/${id}`}>
-          <ImageContainer>
-            <img src={profileImage} alt={name} />
-          </ImageContainer>
-          <PetDetails>
-            <h2>{name}</h2>
-            <h4>{location}</h4>
-          </PetDetails>
-        </Link>
+      <Link to={`details/${id}`}>
+        <ImageContainer>
+          <img src={profileImage} alt={name} />
+        </ImageContainer>
+        <PetDetails>
+          <h2>{name}</h2>
+          <h4>{location}</h4>
+        </PetDetails>
+      </Link>
     );
   }
 }
 
 export default Pet;
-
 
 export const ImageContainer = styled.div`
   width: 100px;

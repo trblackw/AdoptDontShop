@@ -21,7 +21,7 @@ class Carousel extends Component {
 
   render() {
     const { photos, active } = this.state;
-     const { name, breed, animal, location } = this.props;
+     const { name, breed, animal, location, zip } = this.props;
     return (
       <Fragment>
         <h3
@@ -29,7 +29,7 @@ class Carousel extends Component {
             textAlign: "center",
             fontFamily: "Varela Round, sans-serif"
           }}
-        >{`${name} is a ${breed} ${animal} in ${location}`}</h3>
+        >{`${name} is a ${breed} ${animal} in ${location} ${zip}`}</h3>
         <CarouselContainer>
              <img src={photos[active].value} alt="primary animal" />
           <div>

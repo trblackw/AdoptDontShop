@@ -24,6 +24,7 @@ const NavContainer = styled.div`
   width: 100%;
   height: 70px;
   border-bottom: 1px solid #036877;
+  font-family: 'Varela Round', sans-serif;
 `;
 
 const NavUl = styled.ul`

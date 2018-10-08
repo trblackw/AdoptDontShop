@@ -42,9 +42,7 @@ class Search extends Component {
                 <select
                   id="breed"
                   defaultValue={context.breed}
-                  onChange={e => {
-                    context.handleBreedChange(e), this.props.search();
-                  }}
+                  onChange={context.handleBreedChange}
                   onBlur={context.handleBreedChange}
                 >
                   {context.breeds.map(breed => (
@@ -53,9 +51,17 @@ class Search extends Component {
                     </option>
                   ))}
                 </select>
-                <button type="submit" id="submit">
+                <Button
+                  onClick={() =>
+                    console.log(
+                      `Showing ${context.breed} ${context.animal}s in or near ${
+                        context.location
+                      }`
+                    )
+                  }
+                >
                   Search
-                </button>
+                </Button>
               </Fragment>
             )}
           </QueryForm>
@@ -73,13 +79,14 @@ const QueryForm = styled.form`
   background: #66b9bf;
   color: whitesmoke;
   width: 80%;
+  text-align: center;
   border: 1px solid #07889b;
   border-radius: 5px;
   input,
   select {
     padding: 0.5em 0.7em;
     margin: 0 auto;
-    width: 40%;
+    width: 60%;
     border-radius: 5px;
   }
   label {
@@ -87,19 +94,20 @@ const QueryForm = styled.form`
     margin: 0.4em;
     font-family: "Varela Round", sans-serif;
   }
+`;
 
-  button#submit {
-    background: #e37222;
+export const Button = styled.button`
+  background: #e37222;
+  color: whitesmoke;
+  padding: 0.7em;
+  width: 20%;
+  border: none;
+  border-radius: 2px;
+  display: block;
+  margin: 1em auto;
+  &:hover {
+    background: #07889b;
     color: whitesmoke;
-    padding: 0.5em;
-    border: none;
-    border-radius: 2px;
-    display: block;
-    margin-top: 1.5em;
-    &:hover {
-      background: #07889b;
-      color: whitesmoke;
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 `;
