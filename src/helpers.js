@@ -29,3 +29,48 @@ export const getUserLocation = () => {
     ).then(data => console.log(data));
   });
 };
+
+// export const formatOptions = options => {
+//   return Array.isArray(options)
+//     ? options.map(option => {
+//         if (option === "altered") {
+//           option = "Neutered";
+//           return option;
+//         } else if (option === "hasShots") {
+//           option = "Vaccinated";
+//           return option;
+//         } else if (option === "housetrained") {
+//           option = "House Trained";
+//           return option;
+//         }
+//       })
+//     : options;
+// };
+
+export const formatOptions = options => {
+  if (Array.isArray(options)) {
+    return options.map(option => {
+      if (option === "altered") {
+        option = "Neutered";
+        return option;
+      } else if (option === "hasShots") {
+        option = "Vaccinated";
+        return option;
+      } else if (option === "housetrained") {
+        option = "House Trained";
+        return option;
+      }
+    });
+  } else if (String(options)) {
+    if (options === "altered") {
+      options = "Neutered";
+      return options;
+    } else if (options === "hasShots") {
+      options = "Vaccinated";
+      return options;
+    } else if (options === "housetrained") {
+      options = "House Trained";
+      return options;
+    }
+  }
+};

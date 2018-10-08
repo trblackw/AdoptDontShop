@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { navigate } from "@reach/router";
 import styled from "styled-components";
 import Carousel from "./Carousel";
-import { petfinder } from "../helpers";
+import { petfinder, formatOptions } from "../helpers";
+import { Button } from "./Search";
 
 class Details extends Component {
   state = {
@@ -34,29 +35,67 @@ class Details extends Component {
           description: pet.description,
           media: pet.media,
           breed,
-          loading: false
+          loading: false,
+          email: pet.contact.email,
+          zip: pet.contact.zip,
+          options: pet.options.option
         });
       })
       .catch(() => navigate("/"));
   };
 
   render() {
-    const { name, animal, location, description, media, breed } = this.state;
+    const {
+      name,
+      animal,
+      location,
+      description,
+      media,
+      breed,
+      zip,
+      options,
+      email
+    } = this.state;
     if (this.state.loading) {
       return <h1>LOADING...</h1>;
     }
     return (
       <DetailsContainer>
-        <button onClick={() => navigate("/")}>Go back</button>
+        <Button onClick={() => navigate("/")} id="returnHome">
+          Go back
+        </Button>
         <Carousel
           media={media}
           name={name}
           animal={animal}
           breed={breed}
           location={location}
+          zip={zip}
         />
-        <h1>{name}</h1>
-        <p>{description}</p>
+        <div id="description" className="shadow">
+          <h1>{name}</h1>
+          <p>{description}</p>
+          {Array.isArray(options) ? (
+            <OptionsContainer>
+              <ul>
+                {formatOptions(options).map(option => (
+                  <li key={option}>{option}</li>
+                ))}
+              </ul>
+            </OptionsContainer>
+          ) : (
+            <OptionsContainer>
+              <ul>
+                <li>{formatOptions(options)}</li>
+              </ul>
+            </OptionsContainer>
+          )}
+        </div>
+        {email && (
+          <Contact>
+            To adopt {name}, contact: {email}
+          </Contact>
+        )}
       </DetailsContainer>
     );
   }
@@ -73,10 +112,42 @@ const DetailsContainer = styled.div`
     font-family: "Varela Round", sans-serif;
   }
 
+  div#description {
+    border: 1px solid #015f6d;
+    background: whitesmoke;
+    color: #015f6d;
+    margin: 0.5em auto;
+    padding: 1.5em;
+    border-radius: 4px;
+  }
+`;
+const OptionsContainer = styled.div`
+  margin: 1em auto;
+  position: relative;
+  width: auto;
+  display: flex;
+  justify-content: center;
+
   ul {
+    list-style: none;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin-right: 0.5em;
   }
+
+  li {
+    margin: 0.7em;
+  }
+
+  li:before {
+    content: "✓";
+    color: green;
+    margin-right: 0.3em;
+  }
+`;
+const Contact = styled.div`
+  margin: 1em auto;
+  background: #07889b;
+  color: whitesmoke;
+  padding: 1em;
+  text-align: center;
 `;
