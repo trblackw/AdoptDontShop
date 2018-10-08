@@ -13,3 +13,19 @@ export const getPhotos = media => {
   }
   return { photos };
 };
+
+export const getUserLocation = () => {
+  if (!navigator.geolocation) {
+    return alert("Having trouble accessing your location!");
+  }
+  navigator.geolocation.getCurrentPosition(location => {
+    const searchString = "animal shelters";
+    fetch(
+      `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURI(
+        searchString
+      )}&inputtype=textquery&fields=formatted_address,name,opening_hours&locationbias=point:${
+        location.coords.latitude
+      },${location.coords.longitude}&key=${process.env.MAPS_API_KEY}`
+    ).then(data => console.log(data));
+  });
+};
