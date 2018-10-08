@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import Pet from "./Pet";
-import { petfinder } from "../helpers";
+import { petfinder, getUserLocation } from "../helpers";
 import styled from "styled-components";
 import Search from "./Search";
 import { Consumer } from "./SearchContext";
-
-//implement user location for home results view
-// const userLocation = navigator.geolocation.getCurrentPosition(position => {
-//    const userLatitude = position.coords.latitude,
-//    const userLongitude = position.coords.longitude
-// })
 
 class Results extends Component {
   state = {
@@ -20,22 +14,25 @@ class Results extends Component {
     this.search();
   }
 
-   search = () => {
-      const { location, animal, breed } = this.props.searchParams;
+  search = () => {
+    const { location, animal, breed } = this.props.searchParams;
     petfinder.pet
       .find({
         output: "full",
-        location, animal, breed
+        location,
+        animal,
+        breed,
+        count: 50
       })
       .then(results => {
         const { pets } = results.petfinder;
         this.setState({ pets: pets.pet });
       });
   };
-   render() {
+  render() {
     return (
       <div>
-          <Search search={this.search}/>
+        <Search search={this.search} />
         <PetContainer>
           {this.state.pets
             .filter(pet => pet.name.split(" ").length < 3)
