@@ -3,12 +3,16 @@ import { navigate } from "@reach/router";
 import styled from "styled-components";
 import Carousel from "./Carousel";
 import { petfinder, formatOptions } from "../helpers";
+import Modal from "./Modal";
 import { Button } from "./Search";
 
 class Details extends Component {
   state = {
-    loading: true
+    loading: true,
+    showModal: false
   };
+
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
   componentDidMount() {
     this.getPet();
@@ -54,7 +58,8 @@ class Details extends Component {
       breed,
       zip,
       options,
-      email
+      email,
+      showModal
     } = this.state;
     if (this.state.loading) {
       return <h1>LOADING...</h1>;
@@ -74,7 +79,32 @@ class Details extends Component {
         />
         <div id="description" className="shadow">
           <h1>{name}</h1>
+          <Button
+            onClick={this.toggleModal}
+            style={{ display: "inline-block", position: "absolute", top: 20, right: 10, left: 10 }}
+          >
+            Adopt {name}
+          </Button>
           <p>{description}</p>
+          {showModal && (
+            <Modal>
+              <p>Would you like to adopt {name}?</p>
+              <div>
+                <Button
+                  onClick={this.toggleModal}
+                  style={{ display: "inline-block", marginRight: ".5em" }}
+                >
+                  Yes
+                </Button>
+                <Button
+                  onClick={this.toggleModal}
+                  style={{ display: "inline-block" }}
+                >
+                  No
+                </Button>
+              </div>
+            </Modal>
+          )}
           {Array.isArray(options) ? (
             <OptionsContainer>
               <ul>
