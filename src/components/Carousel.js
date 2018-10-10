@@ -61,17 +61,25 @@ const CarouselContainer = styled.div`
   border: 3px solid #07889b;
   border-radius: 10px;
 
+  div {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: center;
+     overflow-y: scroll;
+  }
+
   img {
-    height: auto;
-    width: 40%;
+    max-height: auto;
+    max-width: 40%;
     margin-left: 1em;
     border: 3px solid #07889b;
     border-radius: 5px;
   }
 
   div > img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     display: inline-block;
     margin: 15px;
