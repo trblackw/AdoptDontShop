@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { getPhotos } from "../helpers";
-import { ImageContainer } from "./Pet";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 class Carousel extends Component {
   state = {
@@ -31,7 +31,7 @@ class Carousel extends Component {
           }}
         >{`${name} is a ${breed} ${animal} in ${location} ${zip}`}</h3>
         <CarouselContainer>
-             <img src={photos[active].value} alt="primary animal" />
+          <img src={photos[active].value} alt="primary animal" />
           <div>
             {photos.map((photo, i) => (
               <img
@@ -50,6 +50,14 @@ class Carousel extends Component {
   }
 }
 
+Carousel.propTypes = {
+  name: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  animal: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  zip: PropTypes.string.isRequired
+};
+
 export default Carousel;
 
 const CarouselContainer = styled.div`
@@ -62,11 +70,11 @@ const CarouselContainer = styled.div`
   border-radius: 10px;
 
   div {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: wrap;
-     justify-content: center;
-     overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: scroll;
   }
 
   img {
