@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import styled from "styled-components";
+import { getPhotos } from "../helpers";
+import PropTypes from "prop-types";
 
 class Pet extends Component {
+  state = {
+    photos: []
+  };
+  static getDerivedStateFromProps({ media }) {
+    return getPhotos(media);
+  }
   render() {
-    const { name, animal, media, location, id } = this.props;
-
-    let photos = [];
-    if (media && media.photos && media.photos.photo) {
-      photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
-    }
+    const { name, location, id } = this.props;
 
     let profileImage = "";
+    let { photos } = this.state;
     if (photos[0] && photos[0].value) {
       profileImage = photos[0].value;
     } else {
@@ -30,6 +34,12 @@ class Pet extends Component {
     );
   }
 }
+
+Pet.propTypes = {
+  name: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired
+};
 
 export default Pet;
 
