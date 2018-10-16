@@ -30,23 +30,6 @@ export const getUserLocation = () => {
   });
 };
 
-// export const formatOptions = options => {
-//   return Array.isArray(options)
-//     ? options.map(option => {
-//         if (option === "altered") {
-//           option = "Neutered";
-//           return option;
-//         } else if (option === "hasShots") {
-//           option = "Vaccinated";
-//           return option;
-//         } else if (option === "housetrained") {
-//           option = "House Trained";
-//           return option;
-//         }
-//       })
-//     : options;
-// };
-
 export const formatOptions = options => {
   if (Array.isArray(options)) {
     return options.map(option => {
