@@ -81,7 +81,13 @@ class Details extends Component {
           <h1>{name}</h1>
           <Button
             onClick={this.toggleModal}
-            style={{ display: "inline-block", position: "absolute", top: 20, right: 10, left: 10 }}
+            style={{
+              display: "inline-block",
+              position: "absolute",
+              top: 20,
+              right: 10,
+              left: 10
+            }}
           >
             Adopt {name}
           </Button>

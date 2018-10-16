@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
 /* font-family: 'Varela Round', sans-serif; */
 
 * {
@@ -35,6 +35,32 @@ body {
 
 .drop-shadow {
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+}
+
+#modal {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal > div {
+  background-color: #f2934f;
+  color: whitesmoke;
+  max-width: 500px;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#modal:empty {
+  display: none;
 }
 
 /*colors
