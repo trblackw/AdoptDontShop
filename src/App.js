@@ -30,14 +30,16 @@ class App extends Component {
   handleAnimalChange = e => {
     this.setState(
       {
-        animal: e.target.value,
-        breed: ""
+        animal: e.target.value
       },
       this.getBreeds
     );
   };
 
-  handleBreedChange = e => this.setState({ breed: e.target.value });
+  handleBreedChange = e =>
+    this.setState({ breed: e.target.value }, () =>
+      console.log(this.state.breed)
+    );
 
   getBreeds = () => {
     return this.state.animal
@@ -49,6 +51,7 @@ class App extends Component {
         })
       : this.setState({ breeds: [] });
   };
+
   render() {
     return (
       <div>
