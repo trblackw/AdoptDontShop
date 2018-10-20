@@ -4,7 +4,10 @@
   "description": "Application to help individuals find/connect with animals without homes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --silent",
+    "test:update": "jest --silent -u",
+    "test:watch": "jest --silent --watch",
+    "test:coverage": "jest --silent --coverage",
     "dev": "parcel src/index.html"
   },
   "author": "Tucker Blackwell",
@@ -18,7 +21,9 @@
     "eslint": "^5.6.1",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "parcel-bundler": "^1.10.1"
+    "jest": "^23.6.0",
+    "parcel-bundler": "^1.10.1",
+    "react-test-renderer": "^16.5.2"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
