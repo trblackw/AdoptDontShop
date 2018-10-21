@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import styled from "styled-components";
+import styled from "react-emotion";
 import { getPhotos } from "../helpers";
 import PropTypes from "prop-types";
 
@@ -43,7 +43,7 @@ Pet.propTypes = {
 
 export default Pet;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled('div')`
   width: 100px;
   height: 100px;
   clip-path: circle(50% at 50% 50%);
@@ -56,7 +56,7 @@ export const ImageContainer = styled.div`
   }
 `;
 
-const PetDetails = styled.div`
+const PetDetails = styled('div')`
   margin: 0 auto;
   padding: 1em;
   text-align: center;

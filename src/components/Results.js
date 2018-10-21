@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Pet from "./Pet";
 import { petfinder, getUserLocation } from "../helpers";
-import styled from "styled-components";
+import styled from "react-emotion";
 import Search from "./Search";
 import { Consumer } from "./SearchContext";
 
@@ -70,7 +70,7 @@ export default function ResultsWithContext(props) {
   );
 }
 
-const PetContainer = styled.div`
+const PetContainer = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-around;

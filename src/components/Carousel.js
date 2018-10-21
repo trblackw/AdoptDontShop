@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { getPhotos } from "../helpers";
-import styled from "styled-components";
+import styled from "react-emotion";
 import PropTypes from "prop-types";
 
 class Carousel extends Component {
@@ -21,7 +21,7 @@ class Carousel extends Component {
 
   render() {
     const { photos, active } = this.state;
-     const { name, breed, animal, location, zip } = this.props;
+    const { name, breed, animal, location, zip } = this.props;
     return (
       <Fragment>
         <h3
@@ -60,7 +60,7 @@ Carousel.propTypes = {
 
 export default Carousel;
 
-const CarouselContainer = styled.div`
+const CarouselContainer = styled("div")`
   display: flex;
   justify-content: space-around;
   align-items: center;

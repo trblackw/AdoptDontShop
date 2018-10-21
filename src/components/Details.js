@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
-import styled from "styled-components";
+import styled from "react-emotion";
 import Carousel from "./Carousel";
 import { petfinder, formatOptions } from "../helpers";
 import Modal from "./Modal";
@@ -139,7 +139,7 @@ class Details extends Component {
 
 export default Details;
 
-const DetailsContainer = styled.div`
+const DetailsContainer = styled("div")`
   margin: 0 auto;
   padding: 1.5em;
   background-color: #eeaa7b;
@@ -157,7 +157,7 @@ const DetailsContainer = styled.div`
     border-radius: 4px;
   }
 `;
-const OptionsContainer = styled.div`
+const OptionsContainer = styled("div")`
   margin: 1em auto;
   position: relative;
   width: auto;
@@ -180,7 +180,7 @@ const OptionsContainer = styled.div`
     margin-right: 0.3em;
   }
 `;
-const Contact = styled.div`
+const Contact = styled("div")`
   margin: 1em auto;
   background: #07889b;
   color: whitesmoke;

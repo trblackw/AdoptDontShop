@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "@reach/router";
+import styled from "react-emotion";
 
 const Nav = () => (
   <NavContainer className="shadow">
@@ -17,17 +17,20 @@ const Nav = () => (
 
 export default Nav;
 
-const NavContainer = styled.div`
+const NavContainer = styled('header')`
   background: #07889b;
   color: whitesmoke;
   margin: 0;
   width: 100%;
   height: 70px;
   border-bottom: 1px solid #036877;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
-const NavUl = styled.ul`
+const NavUl = styled('ul')`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

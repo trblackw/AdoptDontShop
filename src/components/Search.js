@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import styled from "styled-components";
+import styled from "react-emotion";
 import { ANIMALS } from "petfinder-client";
 import { Consumer } from "./SearchContext";
 
@@ -73,7 +73,7 @@ class Search extends Component {
 
 export default Search;
 
-const QueryForm = styled.form`
+const QueryForm = styled("form")`
   margin: 1em auto;
   padding: 1.5em;
   background: #66b9bf;
@@ -96,11 +96,11 @@ const QueryForm = styled.form`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled("button")`
   background: #e37222;
   color: whitesmoke;
   padding: 0.7em;
-  width: 20%;
+  width: 15%;
   border: none;
   border-radius: 2px;
   display: block;

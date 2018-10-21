@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import { petfinder } from "./helpers";
 import { Provider } from "./components/SearchContext";
 import Results from "./components/Results";
