@@ -1,23 +1,32 @@
 import React from "react";
 import { Link } from "@reach/router";
 import styled from "react-emotion";
+import { Consumer } from "./SearchContext";
 
 const Nav = () => (
-  <NavContainer className="shadow">
-    <NavUl>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/search-query">Search</Link>
-      </li>
-    </NavUl>
-  </NavContainer>
+  <Consumer>
+    {context => (
+      <NavContainer className="shadow">
+        <NavUl>
+          <li>
+            <Link to="/" onClick={() => context.resetSearch()}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/search-query" onClick={() => context.resetSearch()}>
+              Search
+            </Link>
+          </li>
+        </NavUl>
+      </NavContainer>
+    )}
+  </Consumer>
 );
 
 export default Nav;
 
-const NavContainer = styled('header')`
+const NavContainer = styled("header")`
   background: #07889b;
   color: whitesmoke;
   margin: 0;
@@ -30,7 +39,7 @@ const NavContainer = styled('header')`
   z-index: 10;
 `;
 
-const NavUl = styled('ul')`
+const NavUl = styled("ul")`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
