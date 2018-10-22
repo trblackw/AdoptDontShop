@@ -115,14 +115,18 @@ class Details extends Component {
             <OptionsContainer>
               <ul>
                 {formatOptions(options).map(option => (
-                  <li key={option}>{option}</li>
+                  <li key={option}>
+                    <strong>{option}</strong>
+                  </li>
                 ))}
               </ul>
             </OptionsContainer>
           ) : (
             <OptionsContainer>
               <ul>
-                <li>{formatOptions(options)}</li>
+                <li>
+                  <strong>{formatOptions(options)}</strong>
+                </li>
               </ul>
             </OptionsContainer>
           )}
