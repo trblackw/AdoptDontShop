@@ -3,7 +3,7 @@ import Pet from "./Pet";
 import { petfinder, getUserLocation } from "../helpers";
 import styled from "react-emotion";
 import Search from "./Search";
-import { Consumer } from "./SearchContext";
+import { connect } from "react-redux";
 
 class Results extends Component {
   state = {
@@ -15,7 +15,7 @@ class Results extends Component {
   }
 
   search = () => {
-    const { location, animal, breed } = this.props.searchParams;
+    const { location, animal, breed } = this.props;
     petfinder.pet
       .find({
         output: "full",
@@ -62,13 +62,13 @@ class Results extends Component {
   }
 }
 
-export default function ResultsWithContext(props) {
-  return (
-    <Consumer>
-      {context => <Results {...props} searchParams={context} />}
-    </Consumer>
-  );
-}
+const mapStateToProps = ({ location, animal, breed }) => ({
+  location,
+  animal,
+  breed
+});
+
+export default connect(mapStateToProps)(Results);
 
 const PetContainer = styled("div")`
   display: flex;

@@ -6,25 +6,21 @@ import Results from "./components/Results";
 import Details from "./components/Details";
 import SearchQuery from "./components/SearchQuery";
 import Nav from "./components/Nav";
-import store from "./store";
+import configureStore from "./store";
 
 //REDUX
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Fragment>
-          <Nav />
-          <Router>
-            <Results path="/" />
-            <Details path="/details/:id" />
-            <SearchQuery path="/search-query" />
-          </Router>
-        </Fragment>
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider store={configureStore()}>
+    <Fragment>
+      <Nav />
+      <Router>
+        <Results path="/" />
+        <Details path="/details/:id" />
+        <SearchQuery path="/search-query" />
+      </Router>
+    </Fragment>
+  </Provider>
+);
 
 export default App;
 
