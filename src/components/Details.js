@@ -115,14 +115,18 @@ class Details extends Component {
             <OptionsContainer>
               <ul>
                 {formatOptions(options).map(option => (
-                  <li key={option}>{option}</li>
+                  <li key={option} className={/no/gi.test(option) ? "x" : ""}>
+                    <strong>{option}</strong>
+                  </li>
                 ))}
               </ul>
             </OptionsContainer>
           ) : (
             <OptionsContainer>
               <ul>
-                <li>{formatOptions(options)}</li>
+                <li>
+                  <strong>{formatOptions(options)}</strong>
+                </li>
               </ul>
             </OptionsContainer>
           )}
@@ -172,6 +176,12 @@ const OptionsContainer = styled("div")`
 
   li {
     margin: 0.7em;
+  }
+
+  li.x:before {
+    content: "X";
+    color: red;
+    margin-right: 0.3em;
   }
 
   li:before {
