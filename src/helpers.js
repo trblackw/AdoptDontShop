@@ -31,29 +31,28 @@ export const getUserLocation = () => {
 };
 
 export const formatOptions = options => {
+  console.log(options);
   if (Array.isArray(options)) {
     return options.map(option => {
-      if (option === "altered") {
-        option = "Neutered";
-        return option;
-      } else if (option === "hasShots") {
-        option = "Vaccinated";
-        return option;
-      } else if (option === "housetrained") {
-        option = "House Trained";
-        return option;
+      switch (option) {
+        case "altered":
+          option = "Neutered";
+          return option;
+        case "hasShots":
+          option = "Vaccinated";
+          return option;
+        case "housetrained":
+          option = "House Trained";
+          return option;
+        case "noCats":
+          option = "No Cats!";
+          return option;
+         case "specialNeeds":
+            console.log('yewwwww')
+          option = "Special Needs";
+          return option;
       }
     });
-  } else if (String(options)) {
-    if (options === "altered") {
-      options = "Neutered";
-      return options;
-    } else if (options === "hasShots") {
-      options = "Vaccinated";
-      return options;
-    } else if (options === "housetrained") {
-      options = "House Trained";
-      return options;
-    }
   }
 };
+
