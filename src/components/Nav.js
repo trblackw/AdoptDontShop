@@ -1,27 +1,22 @@
 import React from "react";
 import { Link } from "@reach/router";
 import styled from "react-emotion";
-import { Consumer } from "./SearchContext";
 
 const Nav = () => (
-  <Consumer>
-    {context => (
       <NavContainer className="shadow">
         <NavUl>
           <li>
-            <Link to="/" onClick={() => context.resetSearch()}>
+            <Link to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/search-query" onClick={() => context.resetSearch()}>
+            <Link to="/search-query">
               Search
             </Link>
           </li>
         </NavUl>
       </NavContainer>
-    )}
-  </Consumer>
 );
 
 export default Nav;

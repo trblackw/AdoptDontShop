@@ -1,7 +1,9 @@
-export default function breedsReducer(state = "", action) {
+import { CHANGE_BREEDS } from "../actionCreators/getBreeds";
+
+export default function(state = [], action) {
   const { type, payload } = action;
   switch (type) {
-    case "SET_BREEDS":
+    case CHANGE_BREEDS:
       return payload;
     default:
       return state;
