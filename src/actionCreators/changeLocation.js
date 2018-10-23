@@ -1,3 +1,5 @@
+export const CHANGE_LOCATION = "CHANGE_LOCATION";
+
 export default function changeLocation(location) {
-  return { type: "SET_LOCATION", payload: location };
+  return { type: CHANGE_LOCATION, payload: location };
 }

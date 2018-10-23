@@ -1,7 +1,9 @@
+import { CHANGE_ANIMAL } from "../actionCreators/changeAnimal";
+
 export default function animalReducer(state = "", action) {
   const { type, payload } = action;
   switch (type) {
-    case "SET_ANIMAL":
+    case CHANGE_ANIMAL:
       return payload;
     default:
       return state;

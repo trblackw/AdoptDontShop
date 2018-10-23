@@ -1,3 +1,5 @@
+export const CHANGE_ANIMAL = "CHANGE_ANIMAL";
+
 export default function changeAnimal(animal) {
-  return { type: "SET_ANIMAL", payload: animal };
+  return { type: CHANGE_ANIMAL, payload: animal };
 }
