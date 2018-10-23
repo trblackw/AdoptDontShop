@@ -47,12 +47,16 @@ export const formatOptions = options => {
         case "noCats":
           option = "No Cats!";
           return option;
-         case "specialNeeds":
-            console.log('yewwwww')
+        case "specialNeeds":
           option = "Special Needs";
+          return option;
+        case "noKids":
+          option = "Never Been Pregnant";
+          return option;
+        case "noDogs":
+          option = "No Dogs!";
           return option;
       }
     });
   }
 };
-
