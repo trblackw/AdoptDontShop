@@ -51,12 +51,36 @@ export const formatOptions = options => {
           option = "Special Needs";
           return option;
         case "noKids":
-          option = "Never Been Pregnant";
+          option = "Not a Parent";
           return option;
         case "noDogs":
           option = "No Dogs!";
           return option;
       }
     });
+  } else {
+    switch (options) {
+      case "altered":
+        options = "Neutered";
+        return options;
+      case "hasShots":
+        options = "Vaccinated";
+        return options;
+      case "housetrained":
+        options = "House Trained";
+        return options;
+      case "noCats":
+        options = "No Cats!";
+        return options;
+      case "specialNeeds":
+        options = "Special Needs";
+        return options;
+      case "noKids":
+        options = "Not a Parent";
+        return options;
+      case "noDogs":
+        options = "No Dogs!";
+        return options;
+    }
   }
 };
