@@ -21,6 +21,9 @@ const Nav = () => (
               Search
             </Link>
           </li>
+          <li>
+            <Link to="/shelters">Shelters</Link>
+          </li>
         </NavUl>
       </NavContainer>
     )}

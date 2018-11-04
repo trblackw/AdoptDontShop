@@ -7,6 +7,7 @@ import Results from "./components/Results";
 import Details from "./components/Details";
 import SearchQuery from "./components/SearchQuery";
 import Nav from "./components/Nav";
+import Shelters from "./components/Shelters";
 
 class App extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class App extends Component {
             <Results path="/" />
             <Details path="/details/:id" />
             <SearchQuery path="/search-query" />
+            <Shelters path="/shelters" />
           </Router>
         </Provider>
       </div>
