@@ -7,9 +7,6 @@ const Nav = () => (
   <Consumer>
     {context => (
       <NavContainer className="shadow">
-        <h3>
-          <span>Adopt</span>, Don't Shop
-        </h3>
         <NavUl>
           <li>
             <Link to="/" onClick={() => context.resetSearch()}>
@@ -40,19 +37,6 @@ const NavContainer = styled("header")`
   position: sticky;
   top: 0;
   z-index: 10;
-
-  h3 {
-    margin: 1.5em 1em;
-    float: left;
-    font-size: 1.4em;
-    position: fixed;
-  }
-
-  span {
-    text-decoration: underline;
-    text-decoration-color: #f2934f;
-    text-decoration-style: double;
-  }
 `;
 
 const NavUl = styled("ul")`

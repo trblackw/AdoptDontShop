@@ -22,7 +22,6 @@ class Carousel extends Component {
   render() {
     const { photos, active } = this.state;
     const { name, breed, animal, location, zip } = this.props;
-    console.log("photos", photos);
     return (
       <Fragment>
         <h3
@@ -32,23 +31,18 @@ class Carousel extends Component {
           }}
         >{`${name} is a ${breed} ${animal} in ${location} ${zip}`}</h3>
         <CarouselContainer>
-          <Hero
-            src={photos[active].value}
-            alt="primary animal"
-            className={photos.length === 1 ? "single" : ""}
-          />
-          <div className="carousel-photos">
-            {photos.length > 1 &&
-              photos.map((photo, i) => (
-                <img
-                  onClick={this.handleClick}
-                  key={photo.value}
-                  src={photo.value}
-                  data-index={i}
-                  alt="animal thumbnail"
-                  className={i === active ? "active" : ""}
-                />
-              ))}
+          <img src={photos[active].value} alt="primary animal" />
+          <div>
+            {photos.map((photo, i) => (
+              <img
+                onClick={this.handleClick}
+                key={photo.value}
+                src={photo.value}
+                data-index={i}
+                alt="animal thumbnail"
+                className={i === active ? "active" : ""}
+              />
+            ))}
           </div>
         </CarouselContainer>
       </Fragment>
@@ -66,15 +60,6 @@ Carousel.propTypes = {
 
 export default Carousel;
 
-const Hero = styled("img")`
-  max-height: 80%;
-  max-width: 40%;
-  margin-left: 1em;
-  border: 3px solid #07889b;
-  border-radius: 5px;
-  object-fit: cover;
-`;
-
 const CarouselContainer = styled("div")`
   display: flex;
   justify-content: space-around;
@@ -84,16 +69,25 @@ const CarouselContainer = styled("div")`
   border: 3px solid #07889b;
   border-radius: 10px;
 
-  div.carousel-photos {
+  div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    overflow-y: scroll;
   }
 
-  div.carousel-photos > img {
-    width: 100px;
-    height: 100px;
+  img {
+    max-height: auto;
+    max-width: 40%;
+    margin-left: 1em;
+    border: 3px solid #07889b;
+    border-radius: 5px;
+  }
+
+  div > img {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     display: inline-block;
     margin: 15px;

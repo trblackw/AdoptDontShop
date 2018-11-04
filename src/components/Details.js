@@ -79,7 +79,18 @@ class Details extends Component {
         />
         <div id="description" className="shadow">
           <h1>{name}</h1>
-
+          <Button
+            onClick={this.toggleModal}
+            style={{
+              display: "inline-block",
+              position: "absolute",
+              top: 20,
+              right: 10,
+              left: 10
+            }}
+          >
+            Adopt {name}
+          </Button>
           <p>{description}</p>
           {showModal && (
             <Modal>
@@ -100,25 +111,18 @@ class Details extends Component {
               </div>
             </Modal>
           )}
-          <Button onClick={this.toggleModal} style={{ width: "20%" }}>
-            Adopt {name}
-          </Button>
           {Array.isArray(options) ? (
             <OptionsContainer>
               <ul>
                 {formatOptions(options).map(option => (
-                  <li key={option} className={/no/gi.test(option) ? "x" : ""}>
-                    <strong>{option}</strong>
-                  </li>
+                  <li key={option}>{option}</li>
                 ))}
               </ul>
             </OptionsContainer>
           ) : (
             <OptionsContainer>
               <ul>
-                <li>
-                  <strong>{formatOptions(options)}</strong>
-                </li>
+                <li>{formatOptions(options)}</li>
               </ul>
             </OptionsContainer>
           )}
@@ -137,7 +141,7 @@ export default Details;
 
 const DetailsContainer = styled("div")`
   margin: 0 auto;
-  padding: 1em;
+  padding: 1.5em;
   background-color: #eeaa7b;
   height: 100vh;
   h1 {
@@ -168,12 +172,6 @@ const OptionsContainer = styled("div")`
 
   li {
     margin: 0.7em;
-  }
-
-  li.x:before {
-    content: "X";
-    color: red;
-    margin-right: 0.3em;
   }
 
   li:before {

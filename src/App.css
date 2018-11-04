@@ -12,10 +12,6 @@ img.active {
   opacity: 0.6;
 }
 
-img.single {
-   margin: 1.5em auto;
- }
-
 a {
   text-decoration: none;
   color: whitesmoke;
