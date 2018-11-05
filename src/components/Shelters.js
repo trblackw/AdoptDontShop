@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { petfinder } from "../helpers";
+import React, { Component } from "react";
+import { petfinder, getLocation, getPlaceDetails } from "../helpers";
 import styled from "react-emotion";
 
 export default class Shelters extends Component {
@@ -15,19 +15,19 @@ export default class Shelters extends Component {
       .then(res => this.setState({ shelters: res.petfinder.shelters }));
   };
 
-  getShelterLocation = (lat, lng) => {
-    fetch(`https://www.google.com/maps?q=${lat},${lng}`);
-  };
   render() {
     const { shelter: shelters } = this.state.shelters;
-    //  if (shelters && shelters.length > 0) {
-    //    const coords = shelters.map(item => ({
-    //      lat: item.latitude,
-    //      lng: item.longitude
-    //    }));
-    //    console.log(this.getShelterLocation(coords[0].lat, coords[0].lng));
-    //  }
-    console.log(shelters);
+    if (shelters && shelters.length > 0) {
+      const coords = shelters.map(item => ({
+        lat: item.latitude,
+        lng: item.longitude,
+        name: item.name
+      }));
+       const locationData = coords.map(location => {
+          getLocation(location.lat, location.lng);
+       });
+    }
+   //  console.log(shelters);
     return (
       <SheltersContainer className="drop-shadow">
         <SheltersList>
@@ -41,7 +41,7 @@ export default class Shelters extends Component {
 
 const SheltersContainer = styled("div")`
   margin: 1.3em auto;
-  padding: .5em;
+  padding: 0.5em;
   background: #66b9bf;
   width: 65%;
   height: auto;

@@ -1,6 +1,5 @@
 import pf from "petfinder-client";
 const MAPS_API_KEY = process.env.MAPS_API_KEY;
-const PLACES_API_KEY = process.env.PLACES_API_KEY;
 
 export const petfinder = pf({
   key: process.env.API_KEY,
@@ -32,20 +31,28 @@ export const getUserLocation = () => {
   });
 };
 
-export const getLocation = (lat, lng) => {
-  fetch(
+export const getLocation = async (lat, lng) => {
+  const locationRes = await fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${MAPS_API_KEY}`
-  )
-    .then(res => res.json())
-    .then(location => console.log(location));
+  );
+
+   const location = await locationRes.json();
+   console.log(location.results);
+
+  //  .then(res => res.json())
+  //  .then(location => location.results)
+  //  .then(res =>
+  //    res.map(location => ({
+  //      formattedAddress: location.formatted_address,
+  //      id: location.place_id
+  //    }))
+  //  );
 };
 
-export const getPlaceDetails = place => {
-  const input = encodeURI(place);
-//   fetch(
-//     `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${input}&inputtype=textquery&fields=photos&key=${PLACES_API_KEY}`
-//   );
-   fetch(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${PLACES_API_KEY}`)
+export const getPlaceDetails = () => {
+  fetch(
+    `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${MAPS_API_KEY}`
+  );
 };
 
 export const formatOptions = options => {
