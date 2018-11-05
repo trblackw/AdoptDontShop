@@ -14,6 +14,12 @@ export const getPhotos = media => {
   return { photos };
 };
 
+//www.google.com/maps?q=${latitude},${longitude}`
+
+// export const getShelterLocation = (lat, lng) => {
+//   fetch(`https://www.google.com/maps?q=${lat},${lng}`);
+// };
+
 export const getUserLocation = () => {
   if (!navigator.geolocation) {
     return alert("Having trouble accessing your location!");
