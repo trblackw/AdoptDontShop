@@ -36,22 +36,13 @@ export const getLocation = async (lat, lng) => {
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${MAPS_API_KEY}`
   );
 
-   const location = await locationRes.json();
-   console.log(location.results);
-
-  //  .then(res => res.json())
-  //  .then(location => location.results)
-  //  .then(res =>
-  //    res.map(location => ({
-  //      formattedAddress: location.formatted_address,
-  //      id: location.place_id
-  //    }))
-  //  );
+  const locations = await locationRes.json();
+  return location.results;
 };
 
-export const getPlaceDetails = () => {
+export const getPlaceDetails = id => {
   fetch(
-    `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${MAPS_API_KEY}`
+    `https://maps.googleapis.com/maps/api/place/details/json?placeid=${id}&fields=name,rating,formatted_address,photo&key=${MAPS_API_KEY}`
   );
 };
 
