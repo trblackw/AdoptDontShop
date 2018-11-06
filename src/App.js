@@ -18,11 +18,13 @@ class App extends Component {
       animal: "",
       breed: "",
       breeds: [],
+      shelters: [],
       handleAnimalChange: this.handleAnimalChange,
       handleBreedChange: this.handleBreedChange,
       handleLocationChange: this.handleLocationChange,
       handleBreedChange: this.handleBreedChange,
-      getBreeds: this.getBreeds
+      getBreeds: this.getBreeds,
+      getShelters: this.getShelters
     };
   }
 
@@ -51,6 +53,15 @@ class App extends Component {
             : this.setState({ breeds: [] });
         })
       : this.setState({ breeds: [] });
+  };
+
+  getShelters = () => {
+    petfinder.shelter
+      .find({
+        location: this.state.location,
+        output: "full"
+      })
+      .then(res => this.setState({ shelters: res.petfinder.shelters.results }));
   };
 
   render() {
