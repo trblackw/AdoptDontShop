@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Pet from "./Pet";
 import { petfinder, getUserLocation } from "../helpers";
 import styled from "react-emotion";
-import Search from "./Search";
+import Search, { Button } from "./Search";
+import Toggle from "./Toggle";
 import { Consumer } from "./SearchContext";
 
 class Results extends Component {
@@ -31,8 +32,16 @@ class Results extends Component {
   };
   render() {
     return (
-      <div>
-        <Search search={this.search} />
+      <Fragment>
+        <Toggle>
+          {({ toggle, on }) => (
+            <Fragment>
+              <Button onClick={toggle}>Search</Button>
+              {on && <Search search={this.search} />}
+            </Fragment>
+          )}
+        </Toggle>
+
         <PetContainer>
           {this.state.pets
             .filter(pet => pet.name.split(" ").length < 3)
@@ -57,7 +66,7 @@ class Results extends Component {
               );
             })}
         </PetContainer>
-      </div>
+      </Fragment>
     );
   }
 }
