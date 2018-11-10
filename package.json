@@ -35,6 +35,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-emotion": "^9.2.12"
+    "react-emotion": "^9.2.12",
+    "react-load-script": "0.0.6"
   }
 }
