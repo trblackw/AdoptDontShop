@@ -8,7 +8,9 @@
     "test:update": "jest --silent -u",
     "test:watch": "jest --silent --watch",
     "test:coverage": "jest --silent --coverage",
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "start": "node index.js",
+    "prestart": "parcel build ./src/index.html"
   },
   "author": "Tucker Blackwell",
   "license": "ISC",
@@ -31,6 +33,7 @@
     "@babel/runtime": "^7.1.2",
     "@reach/router": "^1.2.1",
     "emotion": "^9.2.12",
+    "express": "^4.16.4",
     "petfinder-client": "0.0.3",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
