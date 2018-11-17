@@ -8,12 +8,9 @@ class Pet extends Component {
   state = {
     photos: []
   };
-  static getDerivedStateFromProps({ media }) {
-    return getPhotos(media);
-  }
+  static getDerivedStateFromProps = ({ media }) => getPhotos(media);
   render() {
     const { name, location, id } = this.props;
-
     let profileImage = "";
     let { photos } = this.state;
     if (photos[0] && photos[0].value) {
@@ -43,7 +40,7 @@ Pet.propTypes = {
 
 export default Pet;
 
-export const ImageContainer = styled('div')`
+export const ImageContainer = styled("div")`
   width: 100px;
   height: 100px;
   clip-path: circle(50% at 50% 50%);
@@ -56,7 +53,7 @@ export const ImageContainer = styled('div')`
   }
 `;
 
-const PetDetails = styled('div')`
+const PetDetails = styled("div")`
   margin: 0 auto;
   padding: 1em;
   text-align: center;

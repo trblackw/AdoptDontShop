@@ -4,6 +4,7 @@ import styled from "react-emotion";
 import { Consumer } from "./SearchContext";
 import { Button } from "./Search";
 import Toggle from "./Toggle";
+// import GoogleMap from "./GoogleMap";
 
 class Shelters extends Component {
   state = {
@@ -23,14 +24,16 @@ class Shelters extends Component {
     const { shelter: shelters } = this.state.shelters;
     const {
       location: searchLocation,
-      handleLocationChange
+      handleLocationChange,
+      getShelters
     } = this.props.searchParams;
-
+     console.log(getShelters());
     if (shelters && shelters.length > 0) {
       const coords = shelters.map(item => ({
         lat: item.latitude,
         lng: item.longitude,
-        name: item.name
+        name: item.name,
+        key: item.id
       }));
       const test = coords.map(location =>
         getLocation(location.lat, location.lng)
@@ -39,6 +42,7 @@ class Shelters extends Component {
 
     return (
       <SheltersContainer className="drop-shadow">
+        {/* <GoogleMap /> */}
         <div className="shelters shadow">
           <Toggle>
             {({ toggle, on }) => (
@@ -56,7 +60,7 @@ class Shelters extends Component {
                       placeholder="New Location"
                       onChange={handleLocationChange}
                     />
-                    <button>Go!</button>
+                    <Button onClick={() => getShelters()}>Go!</Button>
                   </Fragment>
                 )}
               </Fragment>
@@ -66,8 +70,8 @@ class Shelters extends Component {
             <small>{searchLocation}</small>
             {shelters &&
               shelters.map(shelter => (
-                <Fragment>
-                  <li key={shelter.id}>{shelter.name}</li>
+                <Fragment key={shelter.id}>
+                  <li>{shelter.name}</li>
                   <hr />
                 </Fragment>
               ))}
@@ -131,7 +135,6 @@ const SheltersList = styled("ul")`
   }
 
   hr {
-    /* height: 1px; */
     border: 0;
     border-top: 1px solid #66b9bf;
   }

@@ -11,9 +11,9 @@ class Results extends Component {
     pets: []
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.search();
-  }
+  };
 
   search = () => {
     const { location, animal, breed } = this.props.searchParams;

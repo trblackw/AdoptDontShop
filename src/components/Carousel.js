@@ -9,7 +9,7 @@ class Carousel extends Component {
     active: 0
   };
 
-  static getDerivedStateFromProps({ media }) {
+  static getDerivedStateFromProps = ({ media }) => {
     return getPhotos(media);
   }
 

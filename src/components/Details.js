@@ -14,7 +14,7 @@ class Details extends Component {
 
   toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getPet();
   }
 
@@ -142,6 +142,10 @@ const DetailsContainer = styled("div")`
   height: 100vh;
   h1 {
     font-family: "Varela Round", sans-serif;
+  }
+
+  h3 {
+     margin-bottom: 1em;
   }
 
   div#description {
