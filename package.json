@@ -9,7 +9,7 @@
     "test:watch": "jest --silent --watch",
     "test:coverage": "jest --silent --coverage",
     "dev": "parcel src/index.html",
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "prestart": "parcel build ./src/index.html"
   },
   "author": "Tucker Blackwell",
