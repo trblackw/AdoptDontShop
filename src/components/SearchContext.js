@@ -5,10 +5,12 @@ const SearchContext = createContext({
   animal: "",
   breed: "",
   breeds: [],
+  shelters: [],
   handleAnimalChange() {},
   handleBreedChange() {},
   handleLocationChange() {},
-  getBreeds() {}
+  getBreeds() {},
+  getShelters() {}
 });
 
 export const Provider = SearchContext.Provider;
