@@ -31,20 +31,6 @@ export const getUserLocation = () => {
     lat: location.coords.latitude,
     lon: location.coords.longitude
   }));
-
-  //   if (!navigator.geolocation) {
-  //     return alert("Having trouble accessing your location!");
-  //   }
-  //   navigator.geolocation.getCurrentPosition(location => {
-  //     const searchString = "animal shelters";
-  //     fetch(
-  //       `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${encodeURI(
-  //         searchString
-  //       )}&inputtype=textquery&fields=formatted_address,name,opening_hours&locationbias=point:${
-  //         location.coords.latitude
-  //       },${location.coords.longitude}&key=${process.env.MAPS_API_KEY}`
-  //     ).then(data => console.log(data));
-  //   });
 };
 
 export const getLocation = async (lat, lng) => {
@@ -62,6 +48,7 @@ export const getPlaceDetails = id => {
   );
 };
 
+//the only reason these are hardcoded is because there's a finite number of attributes
 export const formatOptions = options => {
   console.log(options);
   if (Array.isArray(options)) {

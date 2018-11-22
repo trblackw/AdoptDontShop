@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from "react";
-import { petfinder, getLocation, getPlaceDetails } from "../helpers";
+import { petfinder, getLocation } from "../helpers";
 import styled from "react-emotion";
 import { Consumer } from "./SearchContext";
 import { Button } from "./Search";
 import Toggle from "./Toggle";
-// import GoogleMap from "./GoogleMap";
 
 class Shelters extends Component {
   state = {
