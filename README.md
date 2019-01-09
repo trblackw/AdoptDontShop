@@ -9,3 +9,8 @@ Note: The app is currently running on an express server but has yet to be hooked
 
 
 (The data is received from the [PetFinder API](https://www.petfinder.com/developers/api-docs))
+
+**Getting it running**
+1) git clone git@github.com:trblackw/AdoptDontShop.git
+2) cd AdoptDontShop; npm i
+3) npm start (fires up express and parcel servers simultaneously)
